@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Save Student</title>
+</head>
+
+<body>
+	
+	<div class="container">
+	
+		<h3>Students of course <span th:text="${grade.course.name}"></span></h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Student </p>
+	
+		<form action="#" th:action="@{/students/save}"
+						 th:object="${grade}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{student.id}" />
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{course}" />
+			
+			<input type="text" th:field="*{student.name}"
+					class="form-control mb-4 col-4" placeholder="Name">
+			<input type="text" th:field="*{student.registrationYear}"
+					class="form-control mb-4 col-4" placeholder="Registration year">
+			<input type="text" th:field="*{student.semester}"
+					class="form-control mb-4 col-4" placeholder="Semester">
+			<input type="text" th:field="*{project}"
+					class="form-control mb-4 col-4" placeholder="Project">
+			<input type="text" th:field="*{finalExam}"
+					class="form-control mb-4 col-4" placeholder="Final exam">
+			<input type="text" th:field="*{projectWeight}"
+					class="form-control mb-4 col-4" placeholder="Project weight">
+					
+				
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/students/list(courseId=${grade.course.id})}">Back to Students List</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

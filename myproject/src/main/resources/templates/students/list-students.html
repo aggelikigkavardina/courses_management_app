@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Students</title>
+</head>
+
+<body>
+
+<div class="container">
+	<h3>Students of course <span th:text="${course.name}"></span></h3>
+	<hr>
+	
+	<!-- Add a button -->
+	<a th:href="@{/students/showFormForAdd(courseId=${course.id})}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Student
+	</a>
+	
+	<a th:href="@{/students/showStatistics(courseId=${course.id})}"
+		class="btn btn-primary btn-sm mb-3">
+		Show statistics
+	</a>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Name</th>
+				<th>Registration Year</th>
+				<th>Semester</th>
+				<th>Project</th>
+				<th>Weight</th>
+				<th>Exam</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="tempGrade : ${course.grades}">
+				<td th:text="${tempGrade.student.name}" />
+				<td th:text="${tempGrade.student.registrationYear}" />
+				<td th:text="${tempGrade.student.semester}" />
+				<td th:text="${tempGrade.project}" />
+				<td th:text="${tempGrade.projectWeight}" />
+				<td th:text="${tempGrade.finalExam}" />
+				<td th:text="${@calculateService.calculateFinalScore(tempGrade)}" />
+				<td>
+					<!-- Add "update" button/link -->
+					<a th:href="@{/students/showFormForUpdate(gradeId=${tempGrade.id})}"
+					   class="btn btn-info btn-sm">
+						Update
+					</a>
+					<!-- Add "delete" button/link -->					
+					<a th:href="@{/students/delete(gradeId=${tempGrade.id})}"
+					   class="btn btn-danger btn-sm"
+					   onclick="if (!(confirm('Are you sure you want to delete this student?'))) return false">
+						Delete
+					</a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+	<a th:href="@{/courses/list}">Back to Courses List</a>
+	
+</div>
+	
+</body>
+</html>
+
+
+

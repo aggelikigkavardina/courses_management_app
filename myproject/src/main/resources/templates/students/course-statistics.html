@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course statistics</title>
+</head>
+
+<body>
+	
+	<div class="container">
+	
+		<h3>Statistics of course <span th:text="${course.name}"></span></h3>
+		<hr>
+		
+		<p>Min: <span th:text="${@statisticService.min(course)}"></span></p>
+		<p>Max: <span th:text="${@statisticService.max(course)}"></span></p>
+		<p>Mean: <span th:text="${@statisticService.mean(course)}"></span></p>
+	
+		<hr>
+		<a th:href="@{/students/list(courseId=${course.id})}">Back to Students List</a>
+		
+	</div>
+</body>
+
+</html>
