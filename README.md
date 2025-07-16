@@ -33,7 +33,7 @@ The **Courses Management App** is a web-based application that allows teachers t
 
 ---
 
-## Technologies (adjust accordingly)
+## Technologies
 
 - Backend: Java με Spring Boot 2.6.7
 - Build tool: Maven
